@@ -1,0 +1,15 @@
+FROM continuumio/miniconda3
+
+ENV PYTHON_VERSION=3.7.10
+
+RUN conda install -y python=$PYTHON_VERSION
+
+RUN  conda config --env --add channels https://conda.repos.neuron.amazonaws.com \
+ && conda install torch-neuron=1.7 \
+ && conda install -c huggingface transformers \
+ && conda install -c conda-forge jupyterlab 
+
+WORKDIR /home/neuron
+
+
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]

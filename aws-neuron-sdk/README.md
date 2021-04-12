@@ -10,6 +10,22 @@ AWS Neuron is the SDK for [AWS Inferentia](https://aws.amazon.com/machine-learni
 
 # Getting started:
 
+Currently there is no version of `neuron-sdk` for mac. 
+
+## Install Packages
+
+```bash
+# Add Neuron Conda channel to Conda environment
+conda config --env --add channels https://conda.repos.neuron.amazonaws.com
+```
+```bash
+# If you are installing Torch-Neuron plus Neuron-Compiler
+conda install torch-neuron
+```
+
+## Compile model
+
+
 
 # Run locally
 
