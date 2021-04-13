@@ -7,27 +7,29 @@ AWS Neuron is the SDK for [AWS Inferentia](https://aws.amazon.com/machine-learni
 * [Github Repository](https://github.com/aws/aws-neuron-sdk)
 * [Documentation](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/neuron-intro/get-started.html)
 * [Hugging Face Transformers Example](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/neuron-guide/neuron-frameworks/pytorch-neuron/tutorials/tutorial-torchserve.html)
-
+* [Installation Guide](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/neuron-intro/install-pytorch.html?highlight=install)
+* [transformers optimization documentation](https://huggingface.co/transformers/serialization.html?highlight=onnx)
+* [Medium article "PyTorch JIT and TorchScript"](https://towardsdatascience.com/pytorch-jit-and-torchscript-c2a77bac0fff)
 # Getting started:
 
-Currently there is no version of `neuron-sdk` for mac. 
+Currently there is no version of `neuron-sdk` for Mac therefore I created a `dockerfile` to use it in a virtual environment. 
 
-## Install Packages
+There are two examples one from AWS (`aws_tutorial_bert.ipynb`) and one I created (`simple_mrpc_example.ipynb`) while working with `aws-neuron-sdk`. 
 
-```bash
-# Add Neuron Conda channel to Conda environment
-conda config --env --add channels https://conda.repos.neuron.amazonaws.com
+
+## Setup Dev environment
+
+```Bash
+make build
 ```
-```bash
-# If you are installing Torch-Neuron plus Neuron-Compiler
-conda install torch-neuron
-```
-
 ## Compile model
 
+Currently, the model is hardcoded into `compile_model.py`
 
+```bash
+python compile_model.py
+```
 
-# Run locally
 
 
 # Deploy

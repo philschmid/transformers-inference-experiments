@@ -21,3 +21,5 @@ Triton Inference Server is a model serving software that simplifies the deployme
 * [Docker Docs](https://github.com/triton-inference-server/server/blob/master/docs/compose.md)
 
 https://github.com/triton-inference-server/python_backend
+
+https://blog.einstein.ai/benchmarking-tensorrt-inference-server/
