@@ -30,6 +30,8 @@ Currently, the model is hardcoded into `compile_model.py`
 python compile_model.py
 ```
 
-
-
 # Deploy
+
+# Tests
+
+![test](./test.png)
