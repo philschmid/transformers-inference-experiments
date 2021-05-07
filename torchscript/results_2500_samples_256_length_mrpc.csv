@@ -1,0 +1,4 @@
+,model_type,accuracy,f1,total_time,average_time,max_length,samples,task,performance
+0,pytorch,0.8472,0.8949972512369434,1431822.2ms,572.7289ms,256,2500,mrpc,1.0x
+1,quantized,0.834,0.8876860622462787,449334.2ms,179.7337ms,256,2500,mrpc,3.1865x
+2,traced_quantized,0.834,0.8876860622462787,395758.89999999997ms,158.3036ms,256,2500,mrpc,3.6179x

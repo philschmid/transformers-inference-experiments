@@ -24,6 +24,10 @@ There are two examples one from AWS (`aws_tutorial_bert.ipynb`) and one I create
 ```Bash
 make build
 ```
+
+```Bash
+make start
+```
 ## Compile model
 
 Currently, the model is hardcoded into `compile_model.py`

@@ -1,0 +1,28 @@
+FROM continuumio/miniconda3
+
+ENV PYTHON_VERSION=3.7
+
+RUN conda install -y python=$PYTHON_VERSION
+
+RUN pip install --find-links https://download.pytorch.org/whl/torch_stable.html \ 
+                transformers \
+                "datasets>=1.5.0" \ 
+                sklearn \ 
+                onnx \
+                numpy \
+                coloredlogs \
+                psutil \
+                py-cpuinfo \
+                py3nvml \
+                packaging \
+                onnxruntime \
+                onnxconverter_common \
+                torch==1.7.1+cpu \
+                torchvision==0.8.2+cpu \
+                torchaudio===0.7.2 
+
+WORKDIR /home/onnx
+
+RUN conda install -c conda-forge jupyterlab jupyterlab_widgets ipywidgets
+
+CMD ["jupyter", "lab", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
