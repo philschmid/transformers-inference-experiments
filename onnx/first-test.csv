@@ -1,0 +1,3 @@
+,name,model_type,accuracy,f1,total_time,average_time,max_length,samples,task
+0,pytorch,pytorch,0.92,0.9452054794520548,10553.5ms,105.535ms,128,100,mrpc
+1,onnx,onnx,0.92,0.9452054794520548,13862.0ms,138.62ms,128,100,mrpc

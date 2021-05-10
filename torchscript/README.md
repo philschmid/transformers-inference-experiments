@@ -8,3 +8,4 @@
 * [dynamic_quantization_bert_tutorial](https://pytorch.org/tutorials/intermediate/dynamic_quantization_bert_tutorial.html#apply-the-dynamic-quantization)
 * [(PROTOTYPE) GRAPH MODE DYNAMIC QUANTIZATION ON BERT](https://pytorch.org/tutorials/prototype/graph_mode_dynamic_bert_tutorial.html)
 * [(PROTOTYPE) FX GRAPH MODE POST TRAINING STATIC QUANTIZATION](https://pytorch.org/tutorials/prototype/fx_graph_mode_ptq_static.html)
+* [Post Training Quantization (PTQ)](https://nvidia.github.io/TRTorch/tutorials/ptq.html#how-to-create-your-own-ptq-application-in-python)
