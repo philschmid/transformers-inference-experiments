@@ -1,12 +1,17 @@
+#
+# WORK IN PROGRESS
+#
+ 
 ARG VERSION=21.03
 
 FROM nvcr.io/nvidia/tritonserver:$VERSION-py3 as full
 
-RUN git clone https://github.com/triton-inference-server/python_backend -b r$VERSION
-
-
 FROM nvcr.io/nvidia/tritonserver:$VERSION-py3-min
 COPY --from=full /opt/tritonserver/bin /opt/tritonserver/bin
 COPY --from=full /opt/tritonserver/lib /opt/tritonserver/lib
-COPY --from=full ./python_backend /opt/tritonserver/backends/python_backend
 
+RUN git clone https://github.com/triton-inference-server/python_backend -b r21.03
+
+COPY ./python_backend /opt/tritonserver/backends/python_backend
+
+# RUN $PATH/python pip install torch==1.8.1 transformers==4.6.0

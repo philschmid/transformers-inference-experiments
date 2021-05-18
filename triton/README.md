@@ -19,7 +19,10 @@ Triton Inference Server is a model serving software that simplifies the deployme
 # Resourcecs
 
 * [Docker Docs](https://github.com/triton-inference-server/server/blob/master/docs/compose.md)
+* [Python_backend](https://github.com/triton-inference-server/python_backend)
+* [Benchmarking](https://blog.einstein.ai/benchmarking-tensorrt-inference-server/)
 
-https://github.com/triton-inference-server/python_backend
 
-https://blog.einstein.ai/benchmarking-tensorrt-inference-server/
+# Current Example Implementations 
+
+[python `transformers` model](./python_backend)
