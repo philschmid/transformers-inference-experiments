@@ -18,6 +18,20 @@ Through this notebook we'll walk you through the process to convert a PyTorch or
 * [Sentence Transformers ONNX issue](https://github.com/UKPLab/sentence-transformers/issues/631)
 * [ONNX example for Fill-Mask](https://neurocode.io/blog/serverless-nlp-transformer-model-with-onnx-and-azure-functions)
 
+
+**Open Research links**
+- https://github.com/Ki6an/fastT5/tree/8dda859086af631a10ad210a5f1afdec64d49616
+- https://stackoverflow.com/questions/66109084/how-to-convert-huggingfaces-seq2seq-models-to-onnx-format/66117248#66117248
+- http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html
+- https://developer.nvidia.com/blog/announcing-onnx-runtime-for-jetson/
+- https://s3.us-east.cloud-object-storage.appdomain.cloud/staging-sombra/default/series/os-kubeflow-2020/static/kubeflow04.pdf
+- https://www.programcreek.com/python/example/126284/transformers.BertTokenizer.from_pretrained 
+- https://opendatascience.com/accelerate-your-nlp-pipelines-using-hugging-face-transformers-and-onnx-runtime/
+- https://opendatascience.com/ml-inference-on-edge-devices-with-onnx-runtime-using-azure-devops/
+- https://www.kaggle.com/alexalex02/nlp-transformers-inference-optimization/code
+- https://simpletransformers.ai/docs/tips-and-tricks/#onnx-support-beta
+- https://cloudblogs.microsoft.com/opensource/2021/03/01/optimizing-bert-model-for-intel-cpu-cores-using-onnx-runtime-default-execution-provider/
+
 ## Setup Dev environment
 
 ```Bash
