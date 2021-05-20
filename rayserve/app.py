@@ -1,3 +1,4 @@
+from os import name
 import ray
 from ray import serve
 from typing import Optional
@@ -24,11 +25,11 @@ model_list = {
         "model_id": "lordtt13/emo-mobilebert",
         "init_replication": 1,
     },
-    # "prunebert": {
-    #     "name": "prunebert",
-    #     "model_id": "huggingface/prunebert-base-uncased-6-finepruned-w-distil-mnli",
-    #     "init_replication": 1,
-    # },
+    "prunebert": {
+        "name": "prunebert",
+        "model_id": "huggingface/prunebert-base-uncased-6-finepruned-w-distil-mnli",
+        "init_replication": 1,
+    },
 }
 
 
@@ -42,7 +43,7 @@ def deploy_model(name, model_id, task):
         def __call__(self, request):
             return self.nlp_model(request)
 
-    Transformer.deploy(model_id)
+    Transformer.deploy(model_id, task)
     return Transformer.get_handle()
 
 
@@ -92,3 +93,19 @@ async def context():
 @app.get("/endpoints")
 async def list_endpoints():
     return serve.list_endpoints()
+
+
+class DeploymentBody(BaseModel):
+    name: str
+    task: str
+    model_id: str
+
+
+@app.post("/deploy")
+async def deploy_new_model(model: DeploymentBody):
+    available_resources = ray.available_resources()
+    if available_resources["CPU"] == 0:
+        raise HTTPException(status_code=404, detail=f"No Resources for deployed")
+    model_list[model.name] = model.__dict__
+    model_list[model.name]["handle"] = deploy_model(name=model.name, model_id=model.model_id, task=model.task)
+    return "Deployment Successfull"
