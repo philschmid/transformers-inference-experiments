@@ -29,8 +29,11 @@ model_list = {
         "name": "prunebert",
         "model_id": "huggingface/prunebert-base-uncased-6-finepruned-w-distil-mnli",
         "init_replication": 1,
+        "task": "text-classification",
     },
 }
+
+ensemble_model = ["mobilebert", "prunebert"]
 
 
 # Define our deployment.
@@ -47,6 +50,29 @@ def deploy_model(name, model_id, task):
     return Transformer.get_handle()
 
 
+def deploy_ensemble(name, model_id_list):
+    @serve.deployment(name=name, num_replicas=1, max_concurrent_queries=10)
+    class EnsembleTransformer:
+        def __init__(self, model_id_list):
+            self.models = []
+            for model in model_id_list:
+                if model in model_list.keys():
+                    self.models.append(model_list[model])
+                else:
+                    model["handle"] = deploy_model(name=model["name"], model_id=model["model_id"], task=model["task"])
+                    self.models.append(model)
+
+        async def __call__(self, request):
+            predictions = []
+            for model in self.models:
+                pred = await model["handle"].remote(request)
+                predictions.append({"model": model["name"], "prediction": pred})
+            return {"ensemble": predictions}
+
+    EnsembleTransformer.deploy(model_id_list)
+    return EnsembleTransformer.get_handle()
+
+
 @app.on_event("startup")  # Code to be run when the server starts.
 async def startup_event():
     ray.init(address="auto")  # Connect to the running Ray cluster.
@@ -56,10 +82,12 @@ async def startup_event():
         model_config["handle"] = deploy_model(
             name=model_config["name"], model_id=model_config["model_id"], task=model_config["task"]
         )
+    model_list["ensemble"] = {"name": "ensemble"}
+    model_list["ensemble"]["handle"] = deploy_ensemble("ensemble", ensemble_model)
 
 
 @app.post("/{model}/predict")
-async def sentiment(model: str, body: RequestBody):
+async def predict(model: str, body: RequestBody):
     if model not in model_list.keys():
         raise HTTPException(status_code=404, detail=f"No Model {model} deployed")
     return await model_list[model]["handle"].remote(body.inputs)
