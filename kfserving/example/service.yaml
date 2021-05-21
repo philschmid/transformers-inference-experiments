@@ -1,0 +1,29 @@
+apiVersion: serving.kubeflow.org/v1beta1
+kind: InferenceService
+metadata:
+  name: transformers
+  # annotations:
+  #   autoscaling.knative.dev/target: "5" # max autoscaling
+spec:
+  predictor:
+    minReplicas: 1
+    containers:
+    - image: philschmi/kf-serving:0.0.1
+      name: distilbert-base-uncased-finetuned-sst-2-english
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      env:
+        - name: MODEL_ID
+          value: distilbert-base-uncased-finetuned-sst-2-english
+        - name: TASK
+          value: text-classification
+      resources:
+        requests:
+          memory: "1000Mi"
+          cpu: "250m"
+        limits:
+          memory: "2000Mi"
+          cpu: "500m"     
+
+

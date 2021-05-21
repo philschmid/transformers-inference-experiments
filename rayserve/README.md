@@ -31,4 +31,4 @@ pip install -r requirements.txt
 
 # Current Example Implementations 
 
-[python `transformers` model](./python_backend)
+[fastAPI version with decoupled backend and ensemble prediction](./app.py)

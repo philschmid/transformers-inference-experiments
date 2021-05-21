@@ -1,0 +1,46 @@
+# apiVersion: serving.kubeflow.org/v1alpha2
+# kind: InferenceService
+# metadata:
+#   labels:
+#     controller-tools.k8s.io: "1.0"
+#   name: kfserving-custom-model
+# spec:
+#   default:
+#     predictor:
+#       custom:
+#         name: custom
+#         container:
+#           image: {username}/kfserving-custom-model
+#       storageUri: "s3://kfserving-examples/mnist"
+apiVersion: "serving.kubeflow.org/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: "custom-simple"
+  annotations:
+    autoscaling.knative.dev/target: "5" # max autoscaling
+    prometheus.io/scrape: 'true' # for metrics
+    prometheus.io/port: '8082' # for metrics
+spec:
+  predictor:
+    minReplicas: 1
+    containers:
+    - image: xx
+      name: model-1
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      env:
+        - name: STORAGE_URI
+          value: "gs://kfserving-examples/models/torchserve/bert/" # The storage mounts to  
+      resources:
+        limits:
+          nvidia.com/gpu: 1 # using gpus             
+    - image: xx
+      name: model-2
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      env:
+        - name: STORAGE_URI
+          value: "pvc://model-pv-claim" # The storage mounts to /mnt/models
+
