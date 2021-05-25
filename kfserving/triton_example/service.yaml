@@ -1,0 +1,26 @@
+apiVersion: "serving.kubeflow.org/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: "bert-kfserving"
+spec:
+  transformer:
+    containers:
+    - image: philschmi/kf-client:0.0.1
+      name: philschmid/distilroberta-base-ner-conll2003
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      env:
+        - name: MODEL_ID
+          value: philschmid/distilroberta-base-ner-conll2003
+  predictor:
+    triton:
+      runtimeVersion: 20.10-py3
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: "1"
+          memory: 1Gi
+      storageUri: "gs://kfserving-examples/models/triton/bert"

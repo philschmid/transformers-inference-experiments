@@ -25,6 +25,7 @@ Istio is a service mesh technology that works through the concept of Kubernetes 
 * [Github](https://github.com/kubeflow/kfserving)
 * [AWS Deployment](https://www.kubeflow.org/docs/distributions/aws/customizing-aws/customizing-aws/)
 * [KFServing Server](https://github.com/kubeflow/kfserving/tree/master/python/kfserving)
+* [Examples](https://github.com/kubeflow/kfserving/blob/master/docs/samples/README.md)
 * [Deploying Huggingface with kfserving](http://www.pattersonconsultingtn.com/blog/deploying_huggingface_with_kfserving.html)
 * [Service yaml for custom predictor v1beta1](https://github.com/kubeflow/kfserving/blob/master/docs/samples/v1beta1/custom/simple.yaml)
 * [Multiple custom predictor yamls using torchserve](https://github.com/kubeflow/kfserving/tree/master/docs/samples/v1beta1/custom/torchserve)

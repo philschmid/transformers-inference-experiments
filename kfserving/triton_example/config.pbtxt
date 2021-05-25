@@ -1,0 +1,25 @@
+
+name: "huggingface_distilroberta"
+platform: "python"
+max_batch_size: 1
+input [
+    {
+        name: "input_ids"
+        data_type: TYPE_INT32
+        dims: 128
+    }
+    ]
+    output [
+    {
+        name: "logits"
+        data_type: TYPE_FP32
+        dims: 128
+    },
+]
+
+instance_group [
+    {
+        count: 1
+        kind: KIND_CPU
+    }
+]
