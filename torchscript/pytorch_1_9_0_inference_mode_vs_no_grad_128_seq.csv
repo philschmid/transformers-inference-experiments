@@ -1,0 +1,7 @@
+,model_type,accuracy,f1,total_time,average_time,max_length,samples,task,mode,performance
+0,pytorch,0.86,0.9038461538461539,116347.0ms,232.694ms,128,500,mrpc,no_grad,1.0x
+1,pytorch,0.86,0.9038461538461539,112168.40000000001ms,224.3368ms,128,500,mrpc,inference_mode,1.0373x
+2,quantized,0.846,0.895805142083897,95697.3ms,191.3946ms,128,500,mrpc,no_grad,1.2158x
+3,quantized,0.846,0.895805142083897,93191.40000000001ms,186.3828ms,128,500,mrpc,inference_mode,1.2485x
+4,traced_quantized,0.846,0.895805142083897,87867.5ms,175.735ms,128,500,mrpc,no_grad,1.3241x
+5,traced_quantized,0.846,0.895805142083897,86415.09999999999ms,172.8302ms,128,500,mrpc,inference_mode,1.3464x
